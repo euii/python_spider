@@ -3,20 +3,6 @@ import expangaoxiao as broswer
 from bs4 import BeautifulSoup as bs
 
 
-# class UniversityPage:
-#     def __init__(self, university_name, province, belong_to, education_level, university_type,
-#                  university_management_type, is_985, is_211, has_graduate_school):
-#         self.university_name = university_name
-#         self.province = province
-#         self.belong_to = belong_to
-#         self.education_level = education_level
-#         self.university_type = university_type
-#         self.university_management_type = university_management_type
-#         self.is_985 = is_985
-#         self.is_211 = is_211
-#         self.has_graduate_school = has_graduate_school
-
-
 def get_university_dic():
     return {"university_name": None, "province": None, "belong_to": None, "education_level": None,
             "university_type": None, "university_management_type": None, "is_985": None, "is_211": None,
@@ -83,6 +69,7 @@ def save_file(data, filename="universities.csv"):
             i = 0
             for row in data:
                 w = csv.DictWriter(f, row.keys())
+
                 if i == 0:
                     w.writeheader()
                 w.writerow(row)
@@ -94,5 +81,4 @@ def save_file(data, filename="universities.csv"):
 def start_task():
     save_file(get_universities())
 
-
-start_task()
+# start_task()
