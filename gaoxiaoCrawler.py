@@ -81,4 +81,4 @@ def save_file(data, filename="universities.csv"):
 def start_task():
     save_file(get_universities())
 
-# start_task()
+start_task()

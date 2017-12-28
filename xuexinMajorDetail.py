@@ -57,7 +57,7 @@ def parse_html(html):
     try:
         major_courses = div.find("table", class_="myd tabmyd").select("tbody > tr > td:nth-of-type(1)")
         if isinstance(major_courses, list):
-            major_course_str = " ".join("%s" % item.get_text().strip() for item in major_courses)
+            major_course_str = "|".join("%s" % item.get_text().strip() for item in major_courses)
     except:
         pass
 
@@ -71,7 +71,7 @@ def save_major_detail_to_csv(file, start_step=0):
     with open(file, 'r', newline='') as csvfile:
         reader = csv.reader(csvfile)
         i = 0
-        with open("majors_detail.csv", "a") as f:
+        with open("majors_detail_2.csv", "w") as f:
             fieldnames = ['major_name', 'major_code', "major_instruction", "graduate_work_str",
                           "students_hope_works_str", "major_course_str"]
             w = csv.DictWriter(f, fieldnames)
@@ -84,10 +84,11 @@ def save_major_detail_to_csv(file, start_step=0):
                     major_detail = parse_html(get_html(browser, url))
                     major_detail['major_name'] = major_name
                     w.writerow(major_detail)
+
                     # result.append(major_detail)
                 i += 1
-            # if i == 10:
-            #     break
+                # if i == 10:
+                #     break
         # save_csv(result)
     browser.quit()
 

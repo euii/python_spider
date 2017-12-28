@@ -1,12 +1,11 @@
 from selenium import webdriver
 import time
 import csv
-import expangaoxiao as broswer
 from bs4 import BeautifulSoup as bs
 
 
 # 1.取得所有的专业列表并把专业列表的名称和超链接存入majors.csv
-# 2.一行一行读取majors.csv，抓取详细页面并分析出需要的块
+# 2.一行一行读取majors.csv，抓取详细页面并分析出需要的块 在xuexinMajorDetail.py里实现
 # 3.把每页的信息存入字典列表
 # 4.输出结果到majors_detail.csv
 
@@ -50,7 +49,7 @@ def get_htmls(url, loadmore=False, waittime=2):
 
 
 def parse_majors(htmls):
-    base_url = "http://xz.chsi.com.cn/"
+    base_url = "http://xz.chsi.com.cn"
     all_majors = []
     for html in htmls:
         soup = bs(html, "html.parser")
@@ -80,5 +79,5 @@ def get_majors_to_csv():
     htmls = get_htmls(url, True)
     save_csv(parse_majors(htmls))
 
-
-get_majors_to_csv()
+# 1.取得所有的专业列表并把专业列表的名称和超链接存入majors.csv
+# get_majors_to_csv()
