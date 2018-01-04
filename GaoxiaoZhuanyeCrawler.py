@@ -70,6 +70,32 @@ def get_detail_html_url(wait_time=2):
 
 
 # 3.打开高校列表的专业详细页，保存到CSV
+def get_majors_from_url(output_file, wait_time=2):
+    browser = webdriver.Chrome('chromedriver')
+    data = Utils.read_csv("output/高校专业介绍URL-0.csv")
+    index = 0
+    for rows in data:
+        row = rows.strip().split("|")
+        if row[1].strip() == "error":
+            continue
+        try:
+            browser.get(row[1])
+
+            spans = browser.find_elements_by_xpath(
+                "//div[@id='schoolSpeciality']/ul/li[@class='r_zyjs_majors']/span[@class='r_zyjs_major_span']")
+            span_text = []
+            for span in spans:
+                span_text.append(span.text)
+            time.sleep(wait_time)
+            row_text = ("{}|{} \n".format(row[0], ",".join(span_text)))
+        except:
+            row_text = ("{}|{} \n".format(row[0], "error"))
+        finally:
+            with open("output/" + output_file, "a") as f:
+                f.write(row_text)
+        index += 1
+        print(index)
+
 
 # 4.展开两级科目到3类专业，并去掉重复
 
@@ -86,6 +112,13 @@ def start_task_2():
     # Utils.save_to_file(data, "output/高校专业介绍URL.csv")
 
 
+# 3
+def start_task_3():
+    get_majors_from_url("高校专业列表.csv")
+
+
 # 执行模块
 # start_task_1()
 # start_task_2()
+
+start_task_3()
