@@ -2,6 +2,11 @@ import csv
 
 
 def read_csv(file):
+    """
+    大学专业对应的课程
+    :param file:
+    :return:
+    """
     result = []
     with open(file, 'r', newline='') as f:
         reader = csv.reader(f)

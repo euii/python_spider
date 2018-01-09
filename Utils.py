@@ -1,4 +1,4 @@
-import MySQLdb as mdb
+import pymysql as mdb
 
 
 class Utils:
@@ -12,7 +12,7 @@ class Utils:
         result = []
 
         try:
-            db = mdb.connect('127.0.0.1', 'wxudf', 'wxudf', 'wxudf', charset='utf8')
+            db = mdb.connect('127.0.0.1', 'root', '123456', 'wxudf', charset='utf8')
 
             # prepare a cursor object using cursor() method
             cursor = db.cursor()
