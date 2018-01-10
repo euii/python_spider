@@ -1,10 +1,8 @@
 from Utils import Utils
-import csv
-import expangaoxiao as browser
+from crawler import expangaoxiao as browser
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 import time
-import pandas as pd
 
 
 def get_url():

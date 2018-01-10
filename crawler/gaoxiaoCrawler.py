@@ -1,5 +1,5 @@
 import csv
-import expangaoxiao as broswer
+from crawler import expangaoxiao as broswer
 from bs4 import BeautifulSoup as bs
 
 

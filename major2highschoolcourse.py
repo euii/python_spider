@@ -1,6 +1,10 @@
 from Utils import Utils
 import time
 
+"""
+这个文件作废
+"""
+
 
 class RemoveOpenBrace:
 
